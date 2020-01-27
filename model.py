@@ -21,22 +21,17 @@ def build_model(input_shape, n_classes):
     model = Sequential()
     model.add(Conv2D(48, kernel_size=(3, 3), kernel_initializer='random_normal',
                      activation='relu', input_shape=input_shape))
-    model.add(Conv2D(48, (3, 3), activation='relu'))
-    model.add(Dropout(0.5))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(64, (3, 3), activation='relu'))
     model.add(Conv2D(64, (3, 3), activation='relu'))
     model.add(Dropout(0.6))
     model.add(MaxPooling2D(pool_size=(3, 3)))
 
     model.add(Conv2D(128, (5, 5), activation='relu'))
-    model.add(Conv2D(128, (5, 5), activation='relu'))
     model.add(Dropout(0.7))
     
     model.add(MaxPooling2D(pool_size=(3, 3))) #added 25/12/2018
     model.add(Flatten())
-    model.add(Dense(128, activation='relu'))
     model.add(Dense(n_classes, activation='sigmoid'))
 
     return model
